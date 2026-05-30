@@ -25,15 +25,35 @@ Jean Tremblay
 Garage Pro Drummondville
 450-555-0192"""
 
+email_object2 = "Besoin de pièces pour demain matin"
+email_text2 = """Bonjour,
+
+C'est Mario du garage à Sainte-Marie. J'ai un char en shop, 
+un Dodge Ram 2015, j'ai besoin de la pompe à eau pis les 
+courroies qui vont avec. Vous devriez avoir ça en stock.
+
+Rapplez-moi si vous avez des questions.
+
+Mario Gagnon
+Auto Mario Gagnon
+418-555-0147"""
+
+email_object3 = "Commande pièces Ford"
+email_text3 = """Bonjour,
+
+Je voudrais commander des plaquettes de frein arrière 
+pour Ford Escape 2021 (réf. BP-9921) et des filtres à 
+air (réf. FA-3301). 
+
+Livraison à Lévis svp.
+
+Sophie Bouchard
+Garage Bouchard"""
+
 messages: list[MessageParam] = [
     {
         "role": "user",
-        "content": "Extract the key information from this email:\n"
-        + sender
-        + "\n"
-        + email_object
-        + "\n"
-        + email_text,
+        "content": f"Extract the key information from this email: {sender} {email_object3} {email_text3}",
     }
 ]
 
@@ -44,4 +64,5 @@ response = client.messages.parse(
     output_format=ExtractedOrder,
 )
 
-print(response.parsed_output)
+extractedOrder = response.parsed_output
+print(extractedOrder)
