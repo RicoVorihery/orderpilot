@@ -7,62 +7,69 @@ from models import ExtractedOrder
 load_dotenv()
 client = anthropic.Anthropic()
 
-sender = "jean.tremblay@garagepro.qc.ca"
-email_object = "Commande urgente - pièces Civic et F-150"
-email_text = """Bonjour,
-Je suis Jean Tremblay du Garage Pro à Drummondville.
 
-J'aurais besoin rapidement des pièces suivantes :
+def extract_order_simple(email_sender: str, email_object: str, email_text: str):
+    messages: list[MessageParam] = [
+        {
+            "role": "user",
+            "content": f"""Extract the key information from this email: 
+            {email_sender} {email_object} {email_text}""",
+        }
+    ]
 
-- 4 plaquettes de frein avant pour Honda Civic 2019 (réf. BP-4421)
-- 2 filtres à huile pour Ford F-150 2020 (réf. FO-8834)
-- 1 courroie de distribution Toyota Camry 2018 (réf. CT-1156)
+    response = client.messages.parse(
+        model="claude-opus-4-5",
+        max_tokens=1024,
+        messages=messages,
+        output_format=ExtractedOrder,
+    )
 
-Pouvez-vous confirmer la disponibilité et le délai de livraison ?
+    extractedOrder = response.parsed_output
+    print(extractedOrder)
 
-Merci,
-Jean Tremblay
-Garage Pro Drummondville
-450-555-0192"""
 
-email_object2 = "Besoin de pièces pour demain matin"
-email_text2 = """Bonjour,
+def create_first_message(
+    sender: str, email_object: str, email_text: str
+) -> MessageParam:
+    content = f"""Voici l'email à traiter :
+De : {sender}
+Objet : {email_object}
+Message : {email_text}"""
+    return {"role": "user", "content": content}
 
-C'est Mario du garage à Sainte-Marie. J'ai un char en shop, 
-un Dodge Ram 2015, j'ai besoin de la pompe à eau pis les 
-courroies qui vont avec. Vous devriez avoir ça en stock.
 
-Rapplez-moi si vous avez des questions.
+def extract_order_chat(conversation: list[MessageParam], system_prompt):
+    while True:
+        # 1. First call
+        response = client.messages.create(
+            model="claude-opus-4-5",
+            max_tokens=1024,
+            system=system_prompt,
+            messages=conversation,
+        )
 
-Mario Gagnon
-Auto Mario Gagnon
-418-555-0147"""
+        assistant_reply = (
+            next(block for block in response.content if block.type == "text")
+        ).text
 
-email_object3 = "Commande pièces Ford"
-email_text3 = """Bonjour,
+        if "READY_TO_EXTRACT" in assistant_reply:
+            conversation.append({
+                "role": "user",
+                "content": "Parfait, procède à l'extraction.",
+            })
+            break
 
-Je voudrais commander des plaquettes de frein arrière 
-pour Ford Escape 2021 (réf. BP-9921) et des filtres à 
-air (réf. FA-3301). 
+        conversation.append({"role": "assistant", "content": assistant_reply})
+        print(assistant_reply)
+        email_response = input("Réponse:")
+        conversation.append({"role": "user", "content": email_response})
 
-Livraison à Lévis svp.
+    response = client.messages.parse(
+        model="claude-opus-4-5",
+        system=system_prompt,
+        max_tokens=1024,
+        messages=conversation,
+        output_format=ExtractedOrder,
+    )
 
-Sophie Bouchard
-Garage Bouchard"""
-
-messages: list[MessageParam] = [
-    {
-        "role": "user",
-        "content": f"Extract the key information from this email: {sender} {email_object3} {email_text3}",
-    }
-]
-
-response = client.messages.parse(
-    model="claude-opus-4-5",
-    max_tokens=1024,
-    messages=messages,
-    output_format=ExtractedOrder,
-)
-
-extractedOrder = response.parsed_output
-print(extractedOrder)
+    return response.parsed_output

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "email_1",
+    "sender": "jean.tremblay@garagepro.qc.ca",
+    "object": "Commande urgente - pièces Civic et F-150",
+    "text": "Bonjour, \n\nJe suis Jean Tremblay du Garage Pro à Drummondville. J'aurais besoin rapidement des pièces suivantes :\n- 4 plaquettes de frein avant pour Honda Civic 2019 (réf. BP-4421)\n- 2 filtres à huile pour Ford F-150 2020 (réf. FO-8834)\n- 1 courroie de distribution Toyota Camry 2018 (réf. CT-1156)\nPouvez-vous confirmer la disponibilité et le délai de livraison ?\n\nMerci,\nJean Tremblay\nGarage Pro Drummondville\n450-555-0192"
+  },
+  {
+    "id": "email_2",
+    "sender": "mario.gagnon@gagnongarage.ca",
+    "object": "Besoin de pièces pour demain matin",
+    "text": "Bonjour,\nC'est Mario du garage à Sainte-Marie. J'ai un char en shop, un Dodge Ram 2015, j'ai besoin de la pompe à eau pis les courroies qui vont avec. Vous devriez avoir ça en stock.\nRappelez-moi si vous avez des questions.\n\nMario Gagnon\nAuto Mario Gagnon\n418-555-0147"
+  },
+  {
+    "id": "email_3",
+    "sender": "sophie.bouchard@garagebouchard.ca",
+    "object": "Commande pièces Ford",
+    "text": "Bonjour,\nJe voudrais commander des plaquettes de frein arrière pour Ford Escape 2021 (réf. BP-9921) et des filtres à air (réf. FA-3301). \n\nLivraison à Lévis svp.\n\nSophie Bouchard\nGarage Bouchard"
+  }
+]
