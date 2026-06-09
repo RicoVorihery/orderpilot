@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 .DS_Store
 docs/personal
+
+# .NET
+StockDemo.Api/bin/
+StockDemo.Api/obj/
