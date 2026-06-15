@@ -12,7 +12,10 @@ builder.Services.AddOpenApi();
 //Dbcontext
 builder.Services.AddDbContext<StockDemoDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IStockRepository,StockRepository>();
 
 builder.Services.AddControllers();
 

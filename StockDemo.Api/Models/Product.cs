@@ -8,7 +8,7 @@ public class Product
     public string Brand {get;set;}
     public string? Description {get;set;}
     public decimal? Price {get;set;} 
-    public DateTime Created_at {get;set;}
-    public DateTime Updated_at {get;set;}
+    public DateTime CreatedAt {get;set;}
+    public DateTime UpdatedAt {get;set;}
 }
 

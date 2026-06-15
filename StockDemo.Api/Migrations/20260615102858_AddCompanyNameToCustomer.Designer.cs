@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StockDemo.Api.Data;
@@ -11,9 +12,11 @@ using StockDemo.Api.Data;
 namespace StockDemo.Api.Migrations
 {
     [DbContext(typeof(StockDemoDbContext))]
-    partial class StockDemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260615102858_AddCompanyNameToCustomer")]
+    partial class AddCompanyNameToCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace StockDemo.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("Created_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -69,7 +72,7 @@ namespace StockDemo.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime>("Updated_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -89,7 +92,7 @@ namespace StockDemo.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("Created_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
@@ -106,7 +109,7 @@ namespace StockDemo.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime>("Updated_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -122,7 +125,7 @@ namespace StockDemo.Api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("Created_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("ProductId")
@@ -131,7 +134,7 @@ namespace StockDemo.Api.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime>("Updated_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("WarehouseId")
@@ -154,14 +157,14 @@ namespace StockDemo.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("Created_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime>("Updated_at")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
