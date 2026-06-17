@@ -6,7 +6,7 @@ namespace StockDemo.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController: ControllerBase
+public class ProductsController : ControllerBase
 {
     private readonly IProductRepository _productRepository;
 
@@ -25,8 +25,8 @@ public class ProductsController: ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Product>> GetProductById(int id)
     {
-        var product = await _productRepository.GetProductByIdAsync(id);
-        if(product ==null) return NotFound();
+        var product = await _productRepository.GetByIdAsync(id);
+        if (product == null) return NotFound();
         return Ok(product);
     }
 }

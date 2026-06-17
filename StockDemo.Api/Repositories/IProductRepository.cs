@@ -2,9 +2,8 @@
 
 namespace StockDemo.Api.Repositories;
 
-public interface IProductRepository
+public interface IProductRepository : IRepository<Product>
 {
     Task<IEnumerable<Product>> GetProductsAsync(string? search);
-    Task<Product?> GetProductByIdAsync(int id);
-    
+
 }

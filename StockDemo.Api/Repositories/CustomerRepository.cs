@@ -4,17 +4,14 @@ using StockDemo.Api.Models;
 
 namespace StockDemo.Api.Repositories
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
-        private readonly StockDemoDbContext _dbContext;
-
-        public CustomerRepository(StockDemoDbContext dbContext)
+        public CustomerRepository(StockDemoDbContext context) : base(context)
         {
-            _dbContext = dbContext;
         }
         public async Task<Customer?> GetCustomerByEmailAsync(string email)
         {
-            return await _dbContext.Customers
+            return await _context.Customers
                         .AsNoTracking()
                         .SingleOrDefaultAsync(c => c.Email == email);
         }
