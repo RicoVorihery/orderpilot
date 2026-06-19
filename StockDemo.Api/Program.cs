@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using StockDemo.Api.Data;
+using StockDemo.Api.Middleware;
 using StockDemo.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ApiKeyMiddleware>();
 app.MapControllers();
 
 app.Run();
