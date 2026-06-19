@@ -28,6 +28,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
+
+    await Seeder.SeedAsync(app.Services);
 }
 
 app.UseHttpsRedirection();
