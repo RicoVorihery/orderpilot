@@ -8,3 +8,5 @@ docs/personal
 # .NET
 StockDemo.Api/bin/
 StockDemo.Api/obj/
+StockDemo.Api.Tests/bin/
+StockDemo.Api.Tests/obj/
