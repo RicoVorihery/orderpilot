@@ -1,3 +1,8 @@
+"""
+Learning exercise — tool calling mechanics with parallel execution.
+Not used in production agent flow. Kept for reference.
+"""
+
 from dotenv import load_dotenv
 from datetime import datetime
 from zoneinfo import ZoneInfo
