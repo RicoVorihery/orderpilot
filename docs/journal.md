@@ -20,3 +20,14 @@
 
 ### Week 2 goal
 Build StockDemo .NET API running locally with Docker, accessible via Swagger, with minimal seed data.
+
+### What I learned
+- Working with Scalar instead of Swagger
+- Writing integration tests with WebApplicationFactory
+
+### What was difficult
+- Missing app.MapControllers(), controller not visible in Scalar
+- Datetime UTC constraint with Npgsql, non-obvious error at first.
+
+### What I would do differently
+- Plan file structure before coding, the IRepository<T> refactor mid-week could have been done from the begining. 
