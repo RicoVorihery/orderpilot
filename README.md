@@ -4,7 +4,9 @@
 
 B2B order emails arrive in natural language. Clients write in English or French, abbreviate product names, forget quantities. OrderPilot is an open-source AI agent that reads these emails, asks clarifications when needed, and creates structured draft orders in a .NET ERP, automatically.
 
-**The real problem it solves:** 95% of enterprise AI pilots fail at integration, not at the model.
+**The real problem it solves:** 
+
+95% of enterprise AI pilots fail at integration, not at the model.
 OrderPilot demonstrates the full bridge: a Python AI agent (LangGraph + Claude) communicating 
 with a production-grade .NET 10 API via MCP, the pattern most AI engineers can't build because 
 they don't know .NET.
